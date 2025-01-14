@@ -1,0 +1,40 @@
+ci2:
+  srvhost: localhost
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: ${ci2.srvhost}
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://${ci2.srvhost}:${server.port}/eureka
+
+management:
+  endpoints:
+    jmx:
+      exposure:
+        include: "health"
+    web:
+      exposure:
+        include: "health"
+  endpoint:
+    health:
+      show-details: never
+
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: eureka-discovery-service
+
+server:
+  error:
+    include-binding-errors: never
+    include-message: never
+    include-stacktrace: never
+    include-exception: false
+    whitelabel:
+      enabled: true
+  port: 8081
