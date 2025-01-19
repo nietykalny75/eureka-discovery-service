@@ -121,16 +121,17 @@
                 <configuration>
                     <images>
                         <image>
-                            <name>${project.name}-${project.version}-${git.branch}-${git.commit.id.full}</name>
-                            <alias>${project.version}</alias>
+                            <name>${project.name}</name>
                             <build>
                                 <from>eclipse-temurin:21-jdk</from>
                                 <assembly>
                                     <descriptorRef>artifact</descriptorRef>
                                 </assembly>
-                                <cmd>java -jar
-                                    maven/${project.name}-${project.version}-${git.branch}-${git.commit.id.full}.jar
+                                <cmd>java -jar maven/${project.name}-${project.version}-${git.branch}-${git.commit.id.full}.jar
                                 </cmd>
+                                <ports>
+                                    <port>8081</port>
+                                </ports>
                             </build>
                         </image>
                     </images>
@@ -149,4 +150,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
