@@ -1,15 +1,12 @@
-ci2:
-  srvhost: localhost
-
 eureka:
   instance:
     prefer-ip-address: true
-    hostname: ${ci2.srvhost}
+    hostname: localhost
   client:
     registerWithEureka: false
     fetchRegistry: false
     service-url:
-      defaultZone: http://${ci2.srvhost}:${server.port}/eureka
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
 
 management:
   endpoints:
