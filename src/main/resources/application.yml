@@ -1,39 +1,7 @@
-eureka:
-  instance:
-    prefer-ip-address: true
-    hostname: localhost
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
-  server:
-    renewal-percent-threshold: 0.85
-
-management:
-  endpoints:
-    jmx:
-      exposure:
-        include: "health"
-    web:
-      exposure:
-        include: "health"
-  endpoint:
-    health:
-      show-details: never
-
 spring:
-  main:
-    banner-mode: off
   application:
     name: eureka-discovery-service
-
-server:
-  error:
-    include-binding-errors: never
-    include-message: never
-    include-stacktrace: never
-    include-exception: false
-    whitelabel:
-      enabled: true
-  port: 8081
+  config:
+    import: optional:configserver:http://config-service:8888
+  main:
+    banner-mode: off
